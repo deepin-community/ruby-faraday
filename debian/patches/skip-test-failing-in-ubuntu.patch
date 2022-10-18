@@ -1,0 +1,28 @@
+From: Lucas Kanashiro <lucas.kanashiro@canonical.com>
+Date: Thu, 28 Jan 2021 16:30:42 -0300
+Subject: Skip test failing in Ubuntu autopkgtest environment
+
+The "does not accept uppercase env" test in connection_spec.rb tries to
+set the HTTP_PROXY variable (uppercase) which should not work (nil is
+expected). However, even if the test does not set the http_proxy var
+(lower case) the Ubuntu autopkgtest environment sets this var to point
+to squid.internal, which causes a test failure.
+
+Forwarded: not-needed
+---
+ spec/faraday/connection_spec.rb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/spec/faraday/connection_spec.rb b/spec/faraday/connection_spec.rb
+index 4f51f56..76dd320 100644
+--- a/spec/faraday/connection_spec.rb
++++ b/spec/faraday/connection_spec.rb
+@@ -403,7 +403,7 @@ RSpec.describe Faraday::Connection do
+       with_env 'HTTP_PROXY' => 'http://localhost:8888/' do
+         expect(conn.proxy).to be_nil
+       end
+-    end
++    end unless ENV['AUTOPKGTEST_TMP']
+ 
+     it 'allows when url in no proxy list' do
+       with_env 'http_proxy' => 'http://proxy.com', 'no_proxy' => 'example.com' do

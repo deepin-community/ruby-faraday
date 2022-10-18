@@ -1,0 +1,30 @@
+Description: Skip failure of tests on warning
+Author: Balasankar C <balasankarc@autistici.org>
+Last-Update: 2017-07-26
+---
+This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
+--- a/script/test
++++ b/script/test
+@@ -150,16 +150,6 @@
+     2> >(tee >(grep 'warning:' >"$warnings") | grep -v 'warning:')
+ }
+ 
+-check_warnings() {
+-  # Display Ruby warnings from this project's source files. Abort if any were found.
+-  num="$(grep -F "$PWD" "$warnings" | grep -v "${PWD}/vendor/bundle" | sort | uniq -c | sort -rn | tee /dev/stderr | wc -l)"
+-  rm -f "$warnings"
+-  if [ "$num" -gt 0 ]; then
+-    echo "FAILED: this test suite doesn't tolerate Ruby syntax warnings!" >&2
+-    exit 1
+-  fi
+-}
+-
+ if [ -n "$RBENV_VERSIONS" ]; then
+   IFS=' ' versions=($RBENV_VERSIONS)
+   for version in "${versions[@]}"; do
+@@ -169,5 +159,3 @@
+ else
+   run_test_files "$@"
+ fi
+-
+-check_warnings

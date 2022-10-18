@@ -1,0 +1,6 @@
+LICENSE.md
+README.md
+bin/*
+lib/**/*.rb
+test/**/*.rb
+.github/*.md

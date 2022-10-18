@@ -1,0 +1,21 @@
+Description: we don't need rubygems or bundler
+Author: Praveen Arimbrathodiyil <praveen@debian.org>
+Forwarded: not-needed
+Reviewed-By: Sebastien Badia <seb@sebian.fr>
+Last-Update: 2014-04-11
+
+--- a/script/test
++++ b/script/test
+@@ -19,9 +19,9 @@
+ #   $ RBENV_VERSIONS="1.9.3-p194 ree-1.8.7-2012.02" script/test
+ set -e
+ 
+-if [[ "$RUBYOPT" != *"bundler/setup"* ]]; then
+-  export RUBYOPT="-rbundler/setup $RUBYOPT"
+-fi
++#if [[ "$RUBYOPT" != *"bundler/setup"* ]]; then
++#  export RUBYOPT="-rbundler/setup $RUBYOPT"
++#fi
+ 
+ port=3999
+ proxy_port=3998

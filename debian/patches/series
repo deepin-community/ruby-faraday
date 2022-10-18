@@ -1,0 +1,5 @@
+skip-test-failure-on-warning.patch
+001_remove-bundler.patch
+require-faraday.patch
+remove-coveralls.patch
+skip-test-failing-in-ubuntu.patch

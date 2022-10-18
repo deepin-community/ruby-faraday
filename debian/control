@@ -1,0 +1,58 @@
+Source: ruby-faraday
+Section: ruby
+Priority: optional
+Maintainer: Debian Ruby Team <pkg-ruby-extras-maintainers@lists.alioth.debian.org>
+Uploaders: Anish A <aneesh.nl@gmail.com>,
+           Pirate Praveen <praveen@debian.org>
+Build-Depends: debhelper-compat (= 13),
+               gem2deb,
+               lsof,
+               ruby-rspec,
+               ruby-em-http-request,
+               ruby-em-synchrony,
+               ruby-excon,
+               ruby-httpclient,
+               ruby-minitest,
+               ruby-multipart-post,
+               ruby-net-http-persistent (>= 3.1~),
+               ruby-rack-test,
+               ruby-sinatra,
+               ruby-typhoeus (>= 1.4~),
+               ruby-webmock,
+               ruby-multipart-parser,
+               ruby-ruby2-keywords,
+               pry,
+               ruby-simplecov,
+               ruby-coveralls
+Standards-Version: 4.6.0
+Vcs-Git: https://salsa.debian.org/ruby-team/ruby-faraday.git
+Vcs-Browser: https://salsa.debian.org/ruby-team/ruby-faraday
+Homepage: https://github.com/lostisland/faraday
+Testsuite: autopkgtest-pkg-ruby
+XS-Ruby-Versions: all
+
+Package: ruby-faraday
+Architecture: all
+XB-Ruby-Versions: ${ruby:Versions}
+Depends: ruby | ruby-interpreter,
+         ruby-multipart-post,
+         ruby-ruby2-keywords,
+         ${misc:Depends},
+         ${shlibs:Depends}
+Breaks: ruby-asana (<< 0.10.2),
+        ruby-behance (<< 0.6.1-3),
+        ruby-elasticsearch (<< 6.8.2),
+        ruby-faraday-middleware (<< 1.0),
+        ruby-gh (<< 0.18.0-2),
+        ruby-oauth2 (<< 1.4.1),
+        ruby-sentry-raven (<< 3.0),
+        ruby-vcr (<< 6.0),
+        ruby-diaspora-federation (<= 0.2.6-2),
+        ruby-puppet-forge (<= 2.3.2-1),
+        ruby-azure-core (<= 0.1.15-1),
+        ruby-azure-storage (<= 0.15.0~preview-2),
+        gitaly (<< 13.4.6)
+Description: HTTP/REST API client library
+ Faraday is an HTTP client lib that provides a common
+ interface over many adapters (such as Net::HTTP) and embraces the
+ concept of Rack middleware when processing the request/response cycle.
